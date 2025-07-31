@@ -6,3 +6,6 @@
 
 Not: Koordinat sistemini doğrunun eğimi kadar döndürüp doğruyu x eksenine paralel haline getirip,
 üstünde altında kontrolü yapılabilir.
+
+
+Not: Kenarları verilen a, b, c kenarlarından üçgen oluşup oluşmadığını tespit eden program.
