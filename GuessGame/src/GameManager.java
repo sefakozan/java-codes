@@ -1,0 +1,127 @@
+/**
+ * STATIC KEYWORD
+ * Java'da bir metot static olarak tanımlandığında, bu metot sınıfa aittir.
+ * ve bir sınıfın nesnesi (instance) oluşturulmadan doğrudan çağrılabilir.
+ * Yani, static metotlar nesneye özgü değildir, sınıf düzeyinde çalışır.
+ * Bu nedenle, static metotlar genellikle sınıfın genel işlevlerini gerçekleştirmek veya
+ * nesne oluşturmadan kullanılabilecek yardımcı metotlar için kullanılır.
+ * **************************
+ * Çok spesifik bir iş olmadığı sürece static olan tek metot main metodudur.
+ * Çünkü program başlamadan önce ram'de yer alabilmesi gerekir.
+ * <p>
+ * JVM ve Program Başlangıcı:
+ * Bir Java programı çalıştığında, JVM ilk olarak main metodunu arar ve yürütmeye başlar.
+ * Bu noktada henüz hiçbir nesne oluşturulmamıştır, çünkü nesne oluşturma işlemi (new operatörü ile) programın çalışması sırasında yapılır.
+ * Dolayısıyla, JVM'nin main metodunu çağırabilmesi için bu metodun nesneye bağlı olmadan çalışabilmesi gerekir.
+ * <p>
+ * RAM'de Yer Alma:
+ * static metotlar ve değişkenler, sınıfın yüklenmesi sırasında (class loading) JVM tarafından bellekte alan ayrılır.
+ * Bu, static üyelerin programın başlangıcında erişilebilir olmasını sağlar.
+ * **************************
+ * ** static Metotlarda Sadece static Metotlar Çağrılabilir, Neden?
+ * static metotlar, sınıfın bir nesne olmadan çalışır.
+ * non-static metotlar (instance metot) bir nesneye bağlıdır ve bir nesne olmadan çalışamaz.
+ * Bu yüzden, bir static metot içinde non-static bir metot doğrudan çağrılamaz.
+ * Eğer bir static metot içinde non-static bir metot çağrılmak istenirse,
+ * önce o sınıfın bir nesnesi (instance) oluşturulmalı ve bu metot o nesne üzerinden çağrılmalıdır.
+ * <p>
+ * ** static Metot İçinde Neden this Kullanılamaz?
+ * static metotlar, bir sınıfın nesnesi olmadan çağrılabilir.
+ * Bu durumda, this hangi nesneyi işaret edeceği belirsizdir, çünkü bir nesne olmayabilir.
+ * this, yalnızca nesneye özgü bağlamlarda (instance metotlarda) kullanılabilir. static bağlamda böyle bir nesne referansı yoktur.
+ */
+
+import java.util.Scanner;
+
+public final class GameManager {
+    // GuessGame Field'ları ayarlanması için nesne tanımlandı
+    private final Scanner scanner;
+    private GuessGame game;
+
+    public GameManager() {
+        scanner = new Scanner(System.in);
+    }
+
+    // Kullanıcının ismini alacak
+    // Kullanıcıdan tahmin aralığını alacak
+    // Oyun arasında skor yazılacak
+    // Oyun arasında oyuna devam edebilir veya çıkabilir
+    // Tahmin etme sırası bir insana, bir bilgisayara geçecek
+    // 1 Tur tamamlanınca oyun aralığı değiştirilebilir
+    public static void main(String[] args) {
+        GameManager manager = new GameManager();
+
+        manager.greeting();
+
+        manager.createGame();
+
+        manager.game.start();
+
+        manager.game.finish();
+
+
+//        System.out.printf("-> Hello %s, Have a fun!. Press enter to continue...\n", playerName);
+//        this.pressToContinue();
+//
+//        // Tahminin hangi aralıkta olacağını playerdan alıyoruz
+//        manager.getRange(game);
+
+        manager.scanner.close();
+    }
+
+    private void createGame() {
+        String playerName = this.getHumanPlayerName();
+        // kullanıcıdan aralık alınacak
+        this.game = new GuessGame(playerName, 0, 100);
+    }
+
+    private void greeting() {
+        System.out.println("\t".repeat(6) + "*".repeat(53));
+        System.out.println("\t".repeat(6) + "*" + "\t".repeat(13) + "*");
+        System.out.println("\t".repeat(6) + "*" + "\t".repeat(4) + "Welcome to Guess Game!" + "\t".repeat(4) + "*");
+        System.out.println("\t".repeat(6) + "*" + "\t".repeat(13) + "*");
+        System.out.println("\t".repeat(6) + "*".repeat(53) + "\n");
+    }
+
+    private String getHumanPlayerName() {
+        System.out.print("Enter your name: ");
+        return scanner.nextLine();
+    }
+
+    public void pressToContinue() {
+        try {
+            System.in.read();
+            System.in.skip(System.in.available()); // Kalan girişleri temizler
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void getRange() {
+        System.out.println("\nWrite the guess range of the game with a space in between...");
+        System.out.print("Range: ");
+
+        // girilen değerlerin doğruluğunu yapan do-while döngüsü yazılacak
+        Scanner scanRange = new Scanner(System.in);
+        int[] range = new int[]{scanRange.nextInt(), scanRange.nextInt()};
+
+        // girilen aralığın (min max) şeklinde olduğunu doğruladık
+        if (range[0] > range[1]) {
+            game.gameRange(range[0], range[1]);
+        }
+        else {
+            game.gameRange(range[1], range[0]);
+        }
+
+    }
+
+    public void printScore() {
+
+    }
+
+    // oyun aşaması
+    public void gameStage() {
+    }
+
+
+}

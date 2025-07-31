@@ -1,8 +1,42 @@
 import java.util.Locale;
 
-public class Main {
+/*****************************************************************************************************
+ *
+ * javac (derleyici): file.java dosyasını JVM koduna compile eder ve file.class java ByteCode oluşturur
+ * java file: ByteCode'u (.class) JVM içerisinde çalıştırır
+ * javap -verbose -c file.class: JVM ByteCode'un içeriğini yazdırır
+ *
+ ***********
+ *
+ * JDK - Developer Kit (JRE + JVM + DevTools)
+ * Java uygulamaları geliştirmek için gereken derleyici (javac), kütüphaneler ve
+ * diğer araçları içeren kapsamlı bir geliştirme kitidir.
+ *
+ * JRE - Runtime Environment (JVM):
+ * Java uygulamalarını çalıştırmak için gerekli olan JVM, standart kütüphaneler ve çalışma zamanı bileşenlerini sağlayan ortamdır.
+ *
+ * JVM
+ * Java ByteCode'u çalıştırarak platform bağımsızlığını sağlayan, donanımdan bağımsız bir sanal makinedir.
+ *
+ ************
+ *
+ * Java Compiled bir dil mi yoksa Interpreted bir dil mi?
+ * Derleme Aşaması: Java kodu, javac tarafından bytecode çevrilir.
+ * Bu bytecode, platformdan bağımsız bir ara formattır ve doğrudan donanım üzerinde çalışmaz.
+ *
+ * Yorumlama Aşaması: Bu bytecode, JVM (Java Virtual Machine) tarafından çalıştırılırken yorumlanır veya
+ * JIT (Just-In-Time) derleyicisiyle makine diline çevrilerek yürütülür.
+ * JVM, bayt kodu platforma özgü makine koduna dönüştürerek çalıştırır.
+ *
+ ******************************************************************************************************/
+
+public class HelloJava {
     public static void main(String[] args) {
         // String sınıfı Immutable (değiştirilemez) bir sınıftır, yani bir kez oluşturulduktan sonra içeriği değiştirilemez.
+
+        // join: Birden fazla Stringleri birleştirir ve aralarına belirtilen ayraçı ekler.
+        String argStr = String.join(" ", args);
+        p("args", argStr);
 
         // 1. String Literal
         // String havuzunda (String Pool) saklanır, böylece bellek verimliliği sağlanır.

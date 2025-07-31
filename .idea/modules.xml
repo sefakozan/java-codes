@@ -2,7 +2,12 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/DataTypes/DataTypes.iml" filepath="$PROJECT_DIR$/DataTypes/DataTypes.iml" />
+      <module fileurl="file://$PROJECT_DIR$/GuessGame/GuessGame.iml" filepath="$PROJECT_DIR$/GuessGame/GuessGame.iml" />
       <module fileurl="file://$PROJECT_DIR$/HelloJava/HelloJava.iml" filepath="$PROJECT_DIR$/HelloJava/HelloJava.iml" />
+      <module fileurl="file://$PROJECT_DIR$/JavaKeywords/JavaKeywords.iml" filepath="$PROJECT_DIR$/JavaKeywords/JavaKeywords.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Loops/Loops.iml" filepath="$PROJECT_DIR$/Loops/Loops.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ProblemSolving/ProblemSolving.iml" filepath="$PROJECT_DIR$/ProblemSolving/ProblemSolving.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/java-codes.iml" filepath="$PROJECT_DIR$/.idea/java-codes.iml" />
     </modules>
   </component>
