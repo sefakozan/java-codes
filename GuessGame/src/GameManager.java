@@ -32,6 +32,7 @@
  */
 
 import java.util.Scanner;
+import java.util.Arrays;
 
 public final class GameManager {
     // GuessGame Field'ları ayarlanması için nesne tanımlandı
@@ -45,9 +46,9 @@ public final class GameManager {
     // Kullanıcının ismini alacak
     // Kullanıcıdan tahmin aralığını alacak
     // Oyun arasında skor yazılacak
-    // Oyun arasında oyuna devam edebilir veya çıkabilir
+    // Oyun arasında oyuna devam edebilir veya çıkabilir*****
     // Tahmin etme sırası bir insana, bir bilgisayara geçecek
-    // 1 Tur tamamlanınca oyun aralığı değiştirilebilir
+    // 1 Tur tamamlanınca oyun aralığı değiştirilebilir*****
     public static void main(String[] args) {
         GameManager manager = new GameManager();
 
@@ -59,20 +60,20 @@ public final class GameManager {
 
         manager.game.finish();
 
-
-//        System.out.printf("-> Hello %s, Have a fun!. Press enter to continue...\n", playerName);
-//        this.pressToContinue();
-//
-//        // Tahminin hangi aralıkta olacağını playerdan alıyoruz
-//        manager.getRange(game);
+        manager.pressToContinue();
 
         manager.scanner.close();
     }
 
+    // insan ismi ve oyun aralığı alınacak
     private void createGame() {
         String playerName = this.getHumanPlayerName();
-        // kullanıcıdan aralık alınacak
-        this.game = new GuessGame(playerName, 0, 100);
+
+        System.out.println("-".repeat(50));
+        System.out.printf("Welcome %s!\n", playerName);
+
+        int[] gameRange = this.getRange();
+        this.game = new GuessGame(playerName, gameRange[0], gameRange[1]);
     }
 
     private void greeting() {
@@ -97,31 +98,34 @@ public final class GameManager {
         }
     }
 
-    public void getRange() {
-        System.out.println("\nWrite the guess range of the game with a space in between...");
-        System.out.print("Range: ");
+    public int[] getRange() {
+        System.out.println("Write the guess range of the game with a space in between...");
 
-        // girilen değerlerin doğruluğunu yapan do-while döngüsü yazılacak
-        Scanner scanRange = new Scanner(System.in);
-        int[] range = new int[]{scanRange.nextInt(), scanRange.nextInt()};
+        String[] rangeStr = {"0", "0"};
+        int rangeInt0 = 0, rangeInt1 = 0;
+        // try-catch içinde flag kullanmak önemli
+        boolean flag = false;
+        do {
+            System.out.print("\nSmall Range: ");
+            //rangeStr = new String[]{scanner.next(), scanner.next()};
+            rangeStr[0] = new String(scanner.next());
+            System.out.print("Large Range: ");
+            rangeStr[1] = new String(scanner.next());
 
-        // girilen aralığın (min max) şeklinde olduğunu doğruladık
-        if (range[0] > range[1]) {
-            game.gameRange(range[0], range[1]);
+            try {
+                rangeInt0 = Integer.parseUnsignedInt(rangeStr[0]); // hata yakalanırsa catch bloğuna gider, flag'e uğramaz
+                rangeInt1 = Integer.parseUnsignedInt(rangeStr[1]); // hata yakalanırsa catch bloğuna gider, flag'e uğramaz
+                flag = true;
+            } catch (IllegalArgumentException e) {
+                System.out.println("Please enter a valid number!..");
+            }
         }
-        else {
-            game.gameRange(range[1], range[0]);
-        }
+        while (rangeInt0 < 0 || rangeInt1 < 0 || !flag);
+        int[] rangeInt = {rangeInt0, rangeInt1};
+        Arrays.sort(rangeInt);
 
+        System.out.println("-".repeat(50));
+
+        return rangeInt;
     }
-
-    public void printScore() {
-
-    }
-
-    // oyun aşaması
-    public void gameStage() {
-    }
-
-
 }

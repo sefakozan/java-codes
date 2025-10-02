@@ -14,22 +14,30 @@ public class Computer extends Player {
         this.lastMax = gameMax;
     }
 
+    public void informPlayer(int step) {
+
+    }
+
     public void pickNumber() {
         this.pickedNumber = randomNum(gameMin, gameMax);
-        System.out.printf("Aklımdan %d-%d aralığından bir sayı tuttum.\n", gameMin, gameMax);
+        System.out.printf("I kept a number in my mind from the %d-%d range.\n", gameMin, gameMax);
     }
 
     @Override
     public Answer answer(int guess) {
+        Answer result;
         if (pickedNumber > guess) {
-            return Answer.BIG;
+            result = Answer.BIG;
         }
         else if (pickedNumber < guess) {
-            return Answer.SMALL;
+            result = Answer.SMALL;
         }
         else {
-            return Answer.EQUAL;
+
+            result = Answer.EQUAL;
         }
+        System.out.printf("Computer: %s\n", result);
+        return result;
     }
 
     @Override
@@ -42,8 +50,11 @@ public class Computer extends Player {
 
     public int guessNumber() {
         int guess = this.randomNum(this.lastMin, this.lastMax);
-        System.out.printf("Tuttuğunuz sayı %d?", guess);
         this.lastGuess = guess;
         return guess;
+    }
+
+    public int stepsNumber(int step) {
+        return step;
     }
 }

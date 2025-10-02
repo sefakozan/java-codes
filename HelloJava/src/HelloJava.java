@@ -2,7 +2,7 @@ import java.util.Locale;
 
 /*****************************************************************************************************
  *
- * javac (derleyici): file.java dosyasını JVM koduna compile eder ve file.class java ByteCode oluşturur
+ * javac (derleyici): file.java dosyasını JVM koduna compile eder ve file.class (java ByteCode) oluşturur
  * java file: ByteCode'u (.class) JVM içerisinde çalıştırır
  * javap -verbose -c file.class: JVM ByteCode'un içeriğini yazdırır
  *
@@ -33,7 +33,7 @@ import java.util.Locale;
 public class HelloJava {
     public static void main(String[] args) {
         // String sınıfı Immutable (değiştirilemez) bir sınıftır, yani bir kez oluşturulduktan sonra içeriği değiştirilemez.
-
+ 
         // join: Birden fazla Stringleri birleştirir ve aralarına belirtilen ayraçı ekler.
         String argStr = String.join(" ", args);
         p("args", argStr);
@@ -55,6 +55,7 @@ public class HelloJava {
         // 3. null String
         String str30 = null; // Henüz bir değer atanmamış
         String str31;
+        System.out.println();
         p("str30", str30);
 
         // Atama operatörü atadığı değeri geri dönderir.
@@ -115,7 +116,7 @@ public class HelloJava {
 
         // %-30s  --> %s ile yazdırır, sola hizalı şekilde sağa boşluk
         // %30s   --> %s ile yazdırır, sağa hizalı şekilde sola boşluk
-        // %7.3f  --> 3.14159   --> Çıktı: [  3.141] 7 karakter (. dahil)
+        // %7.3f  --> 3.14159   --> Çıktı: [  3.141] 7 karakter (. dahili)
         // %-30.3f  --> 3.14159   --> Çıktı: [3.141`25 boşluk`] (. dahil)
         // %.3s   --> Merhaba   --> Çıktı: [Mer] ilk 3 karakter
         // %05d   --> 42        --> Çıktı: 00042
