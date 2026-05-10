@@ -30,8 +30,6 @@ target/
 *.bak
 
 # Önbellek ve günlük dosyaları
-.idea/dataSources/
-.idea/dataSources.local.xml
-.idea/dataSources.ids
-.idea/caches/
-.idea/httpRequests/
+.idea/
+*.iml
+*.xml
