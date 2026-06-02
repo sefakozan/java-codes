@@ -1,6 +1,6 @@
 package Lab11;
 
-public class Hasta {
+class Hasta {
     private String ad;
     private String tcKimlik;
     private String telefon;

@@ -1,6 +1,6 @@
 package Lab11;
 
-public class Doktor extends Personel {
+class Doktor extends Personel {
     private String uzmanlik;
     private String diplomaNo;
 
